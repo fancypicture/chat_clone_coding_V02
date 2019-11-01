@@ -1,5 +1,6 @@
 .header-wrapper {
   position: fixed;
+  z-index: 2;
   top: 0px;
   width: 100%;
   padding: 10px 0px;
@@ -30,6 +31,24 @@
   right: 10px;
 }
 
+@keyframes float {
+  0% {
+    box-shadow: 0 30px 60px -12px rgba(50, 50, 93, 0.2),
+      0 18px 36px -18px rgba(0, 0, 0, 0.3),
+      0 -12px 36px -8px rgba(0, 0, 0, 0.25);
+  }
+  50% {
+    box-shadow: 0 30px 60px -60px rgba(50, 50, 93, 0.2),
+      0 18px 36px -18px rgba(0, 0, 0, 0.3),
+      0 -12px 36px -8px rgba(0, 0, 0, 0.25);
+  }
+  100% {
+    box-shadow: 0 30px 60px -12px rgba(50, 50, 93, 0.2),
+      0 18px 36px -18px rgba(0, 0, 0, 0.3),
+      0 -12px 36px -8px rgba(0, 0, 0, 0.25);
+  }
+}
+
 .chat__write {
   margin: 0 auto;
   bottom: 0px;
@@ -50,6 +69,7 @@
   border-radius: 40px;
   box-shadow: 0 30px 60px -12px rgba(50, 50, 93, 0.2),
     0 18px 36px -18px rgba(0, 0, 0, 0.3), 0 -12px 36px -8px rgba(0, 0, 0, 0.25);
+  animation: float 3s linear infinite forwards;
 }
 
 .chat__icon {
@@ -125,10 +145,24 @@
 .sent-message {
   align-self: flex-end;
 }
+
+@keyframes spin {
+  from {
+    transform: none;
+  }
+  to {
+    transform: rotateY(1turn);
+  }
+}
+
 .incoming-message img {
   width: 30px;
   border-radius: 15px;
   margin-right: 15px;
+  box-shadow: rgba(50, 50, 93, 0.25) 0px 13px 27px -5px,
+    rgba(0, 0, 0, 0.3) 0px 8px 16px -8px,
+    rgba(0, 0, 0, 0.024) 0px -6px 16px -6px;
+  animation: spin 1s linear infinite;
 }
 
 .message .message__bubble {
@@ -158,4 +192,34 @@
   border-bottom-right-radius: 0px;
   color: white;
   background-image: linear-gradient(to right, #00c6ff, #0072ff);
+}
+
+@keyframes incomingAnim {
+  from {
+    opacity: 0;
+    transform: translateX(-200px);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+.incoming-message {
+  animation: incomingAnim 0.5s ease-out forwards;
+}
+
+@keyframes sentAnimation {
+  from {
+    opacity: 0;
+    transform: translateX(+200px);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+.sent-message {
+  animation: sentAnimation 0.5s ease-out forwards;
 }
